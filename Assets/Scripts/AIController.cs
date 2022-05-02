@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using StarterAssets;
 using UnityEngine;
 using UnityEngine.AI;
 public class AIController : MonoBehaviour
@@ -100,6 +101,16 @@ public class AIController : MonoBehaviour
                     Stop();
                 m_WaitTime -= Time.deltaTime;
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        ThirdPersonController player = collision.collider.GetComponent<ThirdPersonController>();
+        if(player != null && m_playerInRange)
+        {
+            player.dealDamage(3);
+            Debug.Log("Deal damage");
         }
     }
 

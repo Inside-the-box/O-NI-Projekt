@@ -19,10 +19,12 @@ public class BulletProjectile : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.GetComponent<BulletTarget>() != null) {
+        BulletTarget target =  other.GetComponent<BulletTarget>();
+        if (target != null) {
             // Hit target
             Instantiate(vfxHitGreen, transform.position, Quaternion.identity);
             Debug.Log("Target HIT!");
+            target.dealDamage(1f);
         } else {
             // Hit something else
             Instantiate(vfxHitRed, transform.position, Quaternion.identity);

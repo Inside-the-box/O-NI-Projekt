@@ -1,6 +1,7 @@
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -95,6 +96,8 @@ namespace StarterAssets
 		private bool _hasAnimator;
 
 		private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
+
+		private float health = 20f;
 
 		private void Awake()
 		{
@@ -336,6 +339,23 @@ namespace StarterAssets
 		public void SetRotateOnMove(bool newRotateOnMove)
         {
             _rotateOnMove = newRotateOnMove;
+        }
+
+		public void dealDamage(float damage)
+        {
+			this.health -= damage;
+			if(health <= 0)
+            {
+				Debug.Log("Umrel si");
+                Scene scene = SceneManager.GetActiveScene();
+				SceneManager.LoadScene(scene.name);
+
+			}
+        }
+
+		public float getHealth()
+        {
+			return this.health;
         }
 	}
 }
