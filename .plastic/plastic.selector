@@ -1,4 +1,0 @@
-repository "O-NI Projekt@O_NI@cloud"
-  path "/"
-    br "/main"
-    co "/main"
