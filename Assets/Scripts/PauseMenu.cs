@@ -84,5 +84,17 @@ public class PauseMenu : MonoBehaviour
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+        GameIsPaused = false;
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    public void LoadLevel()
+
+    {
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+        Debug.Log("LoadLevel");
+        SceneManager.LoadScene("Level1");
     }
 }

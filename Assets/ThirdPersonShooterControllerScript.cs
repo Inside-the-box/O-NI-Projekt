@@ -18,8 +18,12 @@ public class ThirdPersonShooterControllerScript : MonoBehaviour
     private StarterAssetsInputs starterAssetsInputs;
     private Animator animator;
 
+    private float timeToShoot = 1f;
+    public float timeToShootInterval = 1f;
+
     private void Awake()
     {
+        timeToShoot = timeToShootInterval;
         thirdPersonController = GetComponent<ThirdPersonController>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         animator = GetComponent<Animator>();
@@ -48,11 +52,12 @@ public class ThirdPersonShooterControllerScript : MonoBehaviour
             Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
 
             transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
-            if (starterAssetsInputs.shoot)
+            if (starterAssetsInputs.shoot && timeToShoot < 0)
             {
                 Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
                 Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
                 starterAssetsInputs.shoot = false;
+                timeToShoot = timeToShootInterval;
             }
 
         }
@@ -64,6 +69,6 @@ public class ThirdPersonShooterControllerScript : MonoBehaviour
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
         }
 
-
+        timeToShoot -= Time.deltaTime;
     }
 }

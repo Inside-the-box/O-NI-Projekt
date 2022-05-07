@@ -2,6 +2,7 @@ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -101,6 +102,14 @@ namespace StarterAssets
 		private float health = 20f;
 
 		public PauseMenu pauseMenu;
+		public HealthBar healthBar;
+
+		public int monstersKilled = 0;
+		public int maxMonsters = 4;
+
+		public Text textForPlayerUI;
+
+		public GameObject finishMenu;
 
 		private void Awake()
 		{
@@ -123,20 +132,27 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
+			healthBar.SetMaxHealth((int)health);
+			this.textForPlayerUI.text = "Cilj: Premagati \"tutorial\" pošasti (0/" + this.maxMonsters + ")";
 		}
 
 		private void Update()
 		{
 			_hasAnimator = TryGetComponent(out _animator);
-			
-			JumpAndGravity();
-			GroundedCheck();
-			Move();
+			if (Time.timeScale == 1f)
+			{
+				JumpAndGravity();
+				GroundedCheck();
+				Move();
+			}
 		}
 
 		private void LateUpdate()
 		{
-			CameraRotation();
+			if(Time.timeScale == 1f)
+            {
+				CameraRotation();
+            }
 		}
 
 		private void AssignAnimationIDs()
@@ -347,6 +363,7 @@ namespace StarterAssets
 		public void dealDamage(float damage)
         {
 			this.health -= damage;
+			healthBar.SetHealth((int)health);
 			if(health <= 0)
             {
 				pauseMenu.Respawn();
@@ -360,6 +377,17 @@ namespace StarterAssets
 		public float getHealth()
         {
 			return this.health;
+        }
+
+		public void goToNextScene()
+        {
+			if(finishMenu != null)
+            {
+				finishMenu.SetActive(true);
+				Time.timeScale = 0f;
+				Cursor.lockState = CursorLockMode.None;
+				Cursor.visible = true;
+			}
         }
 	}
 }

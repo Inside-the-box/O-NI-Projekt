@@ -9,7 +9,8 @@ public class GunSystem : MonoBehaviour
     public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
     public int magazineSize, bulletsPerTap;
     public bool allowButtonHold;
-    int bulletsLeft, bulletsShot;
+    int bulletsLeft=0;
+    int bulletsShot;
 
     //bools 
     bool shooting, readyToShoot, reloading;
@@ -36,7 +37,7 @@ public class GunSystem : MonoBehaviour
         MyInput();
 
         //SetText
-        text.SetText(bulletsLeft + " / " + magazineSize);
+        text.SetText(this.bulletsLeft + " / " + magazineSize);
     }
     private void MyInput()
     {

@@ -6,7 +6,7 @@ public class BulletProjectile : MonoBehaviour {
 
     [SerializeField] private Transform vfxHitGreen;
     [SerializeField] private Transform vfxHitRed;
-
+    public float speed = 50f;
     private Rigidbody bulletRigidbody;
 
     private void Awake() {
@@ -14,7 +14,6 @@ public class BulletProjectile : MonoBehaviour {
     }
 
     private void Start() {
-        float speed = 50f;
         bulletRigidbody.velocity = transform.forward * speed;
     }
 

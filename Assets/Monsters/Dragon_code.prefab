@@ -849,7 +849,7 @@ MonoBehaviour:
   startWaitTime: 4
   timeToRotate: 2
   speedWalk: 6
-  speedRun: 9
+  speedRun: 7
   viewRadius: 15
   viewAngle: 90
   playerMask:
@@ -896,7 +896,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc14cc0bd6bfe2643ad3a700208528f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 15
+  player: {fileID: 0}
 --- !u!1 &4784914194008039025
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using StarterAssets;
 using UnityEngine;
 
 public class BulletTarget : MonoBehaviour
 {
     public float health = 10f;
+    public ThirdPersonController player;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,8 +25,13 @@ public class BulletTarget : MonoBehaviour
         if(health <= 0)
         {
             //Ko umre
-            Debug.Log("Umru sm");
             Destroy(this.gameObject);
+            this.player.monstersKilled++;
+            this.player.textForPlayerUI.text = "Cilj: Premagati \"tutorial\" pošasti (" + this.player.monstersKilled + "/"+this.player.maxMonsters+")";
+            if(this.player.monstersKilled >= this.player.maxMonsters)
+            {
+                this.player.goToNextScene();
+            }
         }
     }
 }
