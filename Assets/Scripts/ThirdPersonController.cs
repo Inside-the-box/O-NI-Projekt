@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 
 namespace StarterAssets
 {
+	
 	[RequireComponent(typeof(CharacterController))]
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 	[RequireComponent(typeof(PlayerInput))]
@@ -98,6 +99,8 @@ namespace StarterAssets
 		private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
 
 		private float health = 20f;
+
+		public PauseMenu pauseMenu;
 
 		private void Awake()
 		{
@@ -346,9 +349,10 @@ namespace StarterAssets
 			this.health -= damage;
 			if(health <= 0)
             {
+				pauseMenu.Respawn();
 				Debug.Log("Umrel si");
-                Scene scene = SceneManager.GetActiveScene();
-				SceneManager.LoadScene(scene.name);
+    //            Scene scene = SceneManager.GetActiveScene();
+				//SceneManager.LoadScene(scene.name);
 
 			}
         }

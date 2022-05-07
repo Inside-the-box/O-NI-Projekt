@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     public StarterAssetsInputs starterAssetsInputs;
 
     public GameObject pauseMenuUI;
+    public GameObject RespawnMenuUI;
 
 
     private void Awake()
@@ -67,5 +68,21 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Quitting game...");
         Application.Quit();
+    }
+
+    public void Respawn()
+    {
+        GameIsPaused = true;
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        RespawnMenuUI.SetActive(true);
+        
+    }
+
+    public void Respawn2()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 }
