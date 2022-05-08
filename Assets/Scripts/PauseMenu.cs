@@ -97,4 +97,31 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("LoadLevel");
         SceneManager.LoadScene("Level1");
     }
+
+    public void LoadLevel2()
+
+    {
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+        Debug.Log("LoadLevel");
+        SceneManager.LoadScene("Level2");
+    }
+
+    public void LoadLevel3()
+
+    {
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+        Debug.Log("LoadLevel");
+        SceneManager.LoadScene("Level3");
+    }
+
+    public void LoadLevel4()
+
+    {
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+        Debug.Log("LoadLevel");
+        SceneManager.LoadScene("Level4");
+    }
 }

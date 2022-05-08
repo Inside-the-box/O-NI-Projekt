@@ -27,7 +27,7 @@ public class BulletTarget : MonoBehaviour
             //Ko umre
             Destroy(this.gameObject);
             this.player.monstersKilled++;
-            this.player.textForPlayerUI.text = "Cilj: Premagati \"tutorial\" pošasti (" + this.player.monstersKilled + "/"+this.player.maxMonsters+")";
+            this.player.textForPlayerUI.text = "Cilj: Premagati pošasti (" + this.player.monstersKilled + "/"+this.player.maxMonsters+")";
             if(this.player.monstersKilled >= this.player.maxMonsters)
             {
                 this.player.goToNextScene();
