@@ -133,7 +133,7 @@ namespace StarterAssets
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
 			healthBar.SetMaxHealth((int)health);
-			this.textForPlayerUI.text = "Cilj: Premagati \"tutorial\" pošasti (0/" + this.maxMonsters + ")";
+			this.textForPlayerUI.text = "Cilj: Premagati pošasti (0/" + this.maxMonsters + ")";
 		}
 
 		private void Update()
