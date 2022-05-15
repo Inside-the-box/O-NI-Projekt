@@ -16,6 +16,7 @@ namespace StarterAssets
 		public bool shoot;
 		public bool option;
 		public bool PauseMenu;
+		public bool slide;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -65,6 +66,10 @@ namespace StarterAssets
 		{
 			PauseInput(value.isPressed);
 		}
+		public void OnSlide(InputValue value)
+		{
+			SlideInput(value.isPressed);
+		}
 #else
 	// old input sys if we do decide to have it (most likely wont)...
 #endif
@@ -105,6 +110,10 @@ namespace StarterAssets
 		public void PauseInput(bool newPauseState)
 		{
 			PauseMenu = newPauseState;
+		}
+		public void SlideInput(bool newSlideState)
+		{
+			slide = newSlideState;
 		}
 #if !UNITY_IOS || !UNITY_ANDROID
 

@@ -4,6 +4,8 @@ using UnityEngine;
 using Cinemachine;
 using StarterAssets;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
 public class ThirdPersonShooterControllerScript : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
@@ -20,6 +22,10 @@ public class ThirdPersonShooterControllerScript : MonoBehaviour
 
     private float timeToShoot = 1f;
     public float timeToShootInterval = 1f;
+    public Slider sliderForFast;
+
+    float fastSpeedFuil = 10f;
+    bool isSpeedFull = true;
 
     private void Awake()
     {
@@ -68,7 +74,42 @@ public class ThirdPersonShooterControllerScript : MonoBehaviour
             thirdPersonController.SetRotateOnMove(true);
             animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
         }
-
         timeToShoot -= Time.deltaTime;
+        if (starterAssetsInputs.slide)
+        {
+            if(fastSpeedFuil >= 10f)
+            {
+                thirdPersonController.MoveSpeed += 5.0f;
+                thirdPersonController.SprintSpeed += 5.0f;
+
+
+                Debug.Log(thirdPersonController.MoveSpeed);
+                isSpeedFull = false;
+                fastSpeedFuil = 0;
+                sliderForFast.maxValue = 10;
+                fastSpeedFuil = 10f;
+            }
+
+            starterAssetsInputs.slide = false;
+        }
+        sliderForFast.value = fastSpeedFuil;
+        if (!isSpeedFull)
+        {
+            fastSpeedFuil -= Time.deltaTime * 3.4f;
+        }
+        if(fastSpeedFuil <= 0 && !isSpeedFull)
+        {
+            isSpeedFull = true;
+            thirdPersonController.MoveSpeed = 2.0f;
+            thirdPersonController.SprintSpeed = 5.335f;
+            fastSpeedFuil = 0;
+        }
+        if (isSpeedFull)
+        {
+            fastSpeedFuil += Time.deltaTime;
+        }
+
+
+        
     }
 }
