@@ -23,6 +23,8 @@ public class ThirdPersonShooterControllerScript : MonoBehaviour
     private float timeToShoot = 1f;
     public float timeToShootInterval = 1f;
     public Slider sliderForFast;
+    public AudioSource audioSource;
+
 
     float fastSpeedFuil = 10f;
     bool isSpeedFull = true;
@@ -64,6 +66,8 @@ public class ThirdPersonShooterControllerScript : MonoBehaviour
                 Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
                 starterAssetsInputs.shoot = false;
                 timeToShoot = timeToShootInterval;
+                audioSource.Play();
+
             }
 
         }

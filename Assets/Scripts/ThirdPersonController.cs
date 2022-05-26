@@ -97,6 +97,8 @@ namespace StarterAssets
 
 		private bool _hasAnimator;
 
+		public AudioSource audioSourceDead;
+
 		private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
 
 		private float health = 20f;
@@ -254,6 +256,9 @@ namespace StarterAssets
 
 			// move the player
 			_controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) + new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+          
+			
+
 
 			// update animator if using character
 			if (_hasAnimator)
@@ -367,9 +372,11 @@ namespace StarterAssets
 			healthBar.SetHealth((int)health);
 			if(health <= 0)
             {
+				audioSourceDead.Play();
 				pauseMenu.Respawn();
 				Debug.Log("Umrel si");
-    //            Scene scene = SceneManager.GetActiveScene();
+				
+				//            Scene scene = SceneManager.GetActiveScene();
 				//SceneManager.LoadScene(scene.name);
 
 			}
