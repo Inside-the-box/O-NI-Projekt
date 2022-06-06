@@ -32,7 +32,9 @@ public class AIController : MonoBehaviour
     bool m_PlayerNear;                              //  If the player is near, state of hearing
     bool m_IsPatrol;                                //  If the enemy is patrol, state of patroling
     bool m_CaughtPlayer;                            //  if the enemy has caught the player
-
+    public AudioSource audioSourceHit;              //  Audio source of the enemy when he hits the player
+         
+    
     void Start()
     {
         m_PlayerPosition = Vector3.zero;
@@ -110,6 +112,7 @@ public class AIController : MonoBehaviour
         if(player != null && m_playerInRange)
         {
             player.dealDamage(3);
+            audioSourceHit.Play();
             Debug.Log("Deal damage");
         }
     }
@@ -224,6 +227,8 @@ public class AIController : MonoBehaviour
                 {
                     m_playerInRange = true;             //  The player has been seeing by the enemy and then the nemy starts to chasing the player
                     m_IsPatrol = false;                 //  Change the state to chasing the player
+                   
+
                 }
                 else
                 {

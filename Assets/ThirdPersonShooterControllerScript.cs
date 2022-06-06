@@ -25,6 +25,7 @@ public class ThirdPersonShooterControllerScript : MonoBehaviour
     public Slider sliderForFast;
     public AudioSource audioSource;
 
+    public AudioSource audioSpeed;
 
     float fastSpeedFuil = 10f;
     bool isSpeedFull = true;
@@ -85,7 +86,7 @@ public class ThirdPersonShooterControllerScript : MonoBehaviour
             {
                 thirdPersonController.MoveSpeed += 5.0f;
                 thirdPersonController.SprintSpeed += 5.0f;
-
+                audioSpeed.Play();
 
                 Debug.Log(thirdPersonController.MoveSpeed);
                 isSpeedFull = false;

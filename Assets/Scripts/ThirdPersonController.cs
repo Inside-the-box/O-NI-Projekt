@@ -97,6 +97,7 @@ namespace StarterAssets
 
 		private bool _hasAnimator;
 
+		
 		public AudioSource audioSourceDead;
 
 		private bool IsCurrentDeviceMouse => _playerInput.currentControlScheme == "KeyboardMouse";
